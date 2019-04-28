@@ -3,26 +3,23 @@
 <Head :name='name'></Head>
         <el-table
     ref="singleTable"
-    :data="tableData"
+    :data="data"
     highlight-current-row
     @current-change="handleCurrentChange"
     style="width: 100%">
     <el-table-column
-      type="index"
-      width="50">
+      type="index">
     </el-table-column>
     <el-table-column
-      property="date"
-      label="日期"
-      width="120">
+      property="registe_time"
+      label="日期">
     </el-table-column>
     <el-table-column
-      property="name"
-      label="姓名"
-      width="120">
+      property="username"
+      label="姓名">
     </el-table-column>
     <el-table-column
-      property="address"
+      property="city"
       label="地址">
     </el-table-column>
   </el-table>
@@ -46,26 +43,10 @@ export default {
 data(){
     return{
         name:'',
-                tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        },
-         {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }],
+        data:[],
         currentRow: null,
-        currentPage1: 5,
+        currentPage1: 1,
+        num:0
     }
 },
  methods: {
@@ -80,6 +61,13 @@ data(){
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
+        this.num=(val-1)*20
+        console.log(this.num)
+        axios.get('https://elm.cangdu.org/v1/users/list?offset='+this.num+'&limit=20').then((res)=>{
+    // console.log(res.data)
+    this.data=res.data
+    console.log(this.data)
+})
       }
     },
 components:{
@@ -91,9 +79,11 @@ created(){
 
 },
 mounted(){
-       axios.get('https://elm.cangdu.org/admin/login').then((res)=>{
-        console.log(res)
-    })
+  axios.get('https://elm.cangdu.org/v1/users/list?offset=0&limit=20').then((res)=>{
+    // console.log(res.data)
+    this.data=res.data
+    console.log(this.data)
+})
 }
 }
 </script>
@@ -102,5 +92,6 @@ mounted(){
 #rigth{
     width: 100%;
     height: 100%;
+    overflow: auto;
 }
 </style>

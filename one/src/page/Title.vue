@@ -2,18 +2,19 @@
     <div id='head1'>
         <el-container style="height: 100%; border: 1px solid #eee">
   <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-    <el-menu :default-openeds="['1', '3']">
-      <el-submenu index="1">
-        <template slot="title"><i class="el-icon-message"></i> <router-link :to="{ name: 'Manage', params: { username: name} }"> 首页</router-link></template>
-      </el-submenu>
+    <el-menu >
+      <!-- <el-submenu index="1"> -->
+          <el-menu-item index="1-1">首页</el-menu-item>
+        <!-- <template slot="title"><i class="el-icon-message"></i>  首页</template> -->
+      <!-- </el-submenu> -->
       <el-submenu index="2">
         <template slot="title"><i class="el-icon-menu"></i>数据管理</template>
         
-          <el-menu-item index="2-1"> <router-link :to="{ name: 'Shop', params: { username: shop} }" >用户列表</router-link></el-menu-item>
-          <el-menu-item index="2-2"> <router-link to='./manage'>商家列表</router-link></el-menu-item>
-          <el-menu-item index="2-3"> <router-link to='./manage'>食品列表</router-link></el-menu-item>
-          <el-menu-item index="2-4"> <router-link to='./manage'>订单列表</router-link></el-menu-item>
-          <el-menu-item index="2-5"> <router-link to='./manage'>管理员列表</router-link></el-menu-item>
+          <router-link  :to="{ name: 'User', params: { username: name } }"><el-menu-item index="2-1"> 用户列表</el-menu-item></router-link>
+          <router-link :to="{ name: 'Manage', params: { username: shop} }"><el-menu-item index="2-2"> 商家列表</el-menu-item></router-link>
+          <router-link :to="{ name: 'Food', params: { username: food} }"><el-menu-item index="2-3"> 食品列表</el-menu-item></router-link>
+          <router-link :to="{ name: 'Order', params: { username: order} }"><el-menu-item index="2-4"> 订单列表</el-menu-item></router-link>
+          <router-link :to="{ name: 'Administrator', params: { username: administrator} }" ><el-menu-item index="2-5"> 管理员列表</el-menu-item></router-link>
         
       </el-submenu>
       <el-submenu index="3">
@@ -54,11 +55,9 @@ data(){
     return{
         name:'首页/数据管理/用户列表',
         shop:'首页/数据管理/商家列表',
-
-        // name:'',
-        // name:''
-
-
+        food:'首页/数据管理/食品列表',
+        order:'首页/数据管理/订单列表',
+        administrator:'首页/数据管理/管理员列表',
     }
 }
 }
@@ -78,4 +77,7 @@ data(){
   .el-aside {
     color: #333;
   }
+  /* .el-menu{
+    background: #324057;
+  } */
 </style>

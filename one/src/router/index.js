@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+// import HelloWorld from '@/components/HelloWorld'
 import Select from '@/page/Select'
 import Title from '@/page/Title'
 import Manage from '@/page/pagerouter/Manage'
-import Shop from '@/page/pagerouter/Shop'
+import User from '@/page/pagerouter/User'
+import Food from '@/page/pagerouter/Food'
+import Order from '@/page/pagerouter/Order'
+import Administrator from '@/page/pagerouter/Administrator'
+
+
 
 
 
@@ -30,9 +35,24 @@ export default new Router({
         component:Manage
       },
       {
-        path: '/shop',
-        name: 'Shop',
-        component:Shop
+        path: '/user',
+        name: 'User',
+        component:User
+      },
+      {
+        path: '/food',
+        name: 'Food',
+        component:Food
+      },
+      {
+        path: '/order',
+        name: 'Order',
+        component:Order
+      },
+      {
+        path: '/administrator',
+        name: 'Administrator',
+        component:Administrator
       }
       ]
      

@@ -7,46 +7,50 @@
     <el-table-column type="expand">
       <template slot-scope="props">
         <el-form label-position="left" inline class="demo-table-expand">
-          <el-form-item label="店铺名称">   
+          <el-form-item label="食品名称">
             <span>{{ props.row.name }}</span>
           </el-form-item>
-          <el-form-item label="店铺地址">
+          <el-form-item label="餐馆名称">
             <span>{{ props.row.address }}</span>
           </el-form-item>
-          <el-form-item label="店铺介绍">
-            <span>{{ props.row.description }}</span>
+          <el-form-item label="食品id">
+            <span>{{ props.row.item_id }}</span>
           </el-form-item>
-          <el-form-item label="店铺 ID">
-            <span>{{ props.row.id }}</span>
+          <el-form-item label="餐馆ID">
+            <span>{{ props.row.category_id }}</span>
           </el-form-item>
-          <el-form-item label="联系电话">
+          <el-form-item label="食品介绍">
             <span>{{ props.row.phone }}</span>
           </el-form-item>
-          <el-form-item label="评分">
+          <el-form-item label="餐馆地址">
             <span>{{ props.row.rating }}</span>
           </el-form-item>
-          <el-form-item label="销售量">
-            <span>{{ props.row.recent_order_num }}</span>
+          <el-form-item label="食品评分">
+            <span>{{ props.row.rating }}</span>
           </el-form-item>
-            <el-form-item label="分类">
+            <el-form-item label="食品分类">
             <span>{{ props.row.category }}</span>
+          </el-form-item>
+          </el-form-item>
+            <el-form-item label="月销量">
+            <span>{{ props.row.month_sales }}</span>
           </el-form-item>
         </el-form>
       </template>
     </el-table-column>
     <el-table-column
-      label="店铺名称"
+      label="食品名称"
       prop="name" 
       width="300">
     </el-table-column>
     <el-table-column
-      label="店铺地址"
-      prop="address"
+      label="食品介绍"
+      prop="description"
       width="600">
     </el-table-column>
     <el-table-column
-      label="店铺介绍"
-      prop="description"
+      label="评分"
+      prop="rating"
       width="400">
     </el-table-column>
      <el-table-column label="操作">
@@ -89,25 +93,7 @@ data(){
     }
 },
  methods: {
-    //   setCurrent(row) {
-    //     this.$refs.singleTable.setCurrentRow(row);
-    //   },
-    //   handleCurrentChange(val) {
-    //     this.currentRow = val;
-    //   },
-    //    handleSizeChange(val) {
-    //     console.log(`每页 ${val} 条`);
-    //   },
-    //   handleCurrentChange(val) {
-    //     console.log(`当前页: ${val}`);
-    //     this.num=(val-1)*20
-    //     console.log(this.num)
-    //     axios.get('https://elm.cangdu.org/v1/users/list?offset='+this.num+'&limit=20').then((res)=>{
-    // // console.log(res.data)
-    // this.data=res.data
-    // console.log(this.data)
-// })
-//       }
+ 
     },
 components:{
 Head
@@ -118,7 +104,7 @@ created(){
 
 },
 mounted(){
-  axios.get('https://elm.cangdu.org/shopping/restaurants?latitude=39.90469&longitude=116.407173&offset=0&limit=20').then((res)=>{
+  axios.get('https://elm.cangdu.org/shopping/v2/foods?offset=0&limit=20&restaurant_id=undefined').then((res)=>{
     console.log(res.data)
     this.data=res.data
     console.log(this.data)

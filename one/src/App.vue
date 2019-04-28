@@ -27,4 +27,8 @@ body{
   position: absolute;
   margin: 0;
 }
+a{
+  color: black;
+  text-decoration: none;
+}
 </style>

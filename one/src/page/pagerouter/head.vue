@@ -2,7 +2,6 @@
     <div id="head">
          <el-header style="text-align: left;  font-size: 12px">
 		 <span>{{name}}</span>
-		  <span>王小虎</span>
 		</el-header>
     </div>
 </template>
