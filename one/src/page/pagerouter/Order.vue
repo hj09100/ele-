@@ -11,7 +11,7 @@
             <span>{{ props.row.name }}</span>
           </el-form-item>
           <el-form-item label="店铺名称">
-            <span>{{ props.row.address }}</span>
+            <span>{{ props.row.address }}</span>4 
           </el-form-item>
           <el-form-item label="收货地址">
             <span>{{ props.row.item_id }}</span>
@@ -58,12 +58,30 @@ export default {
 data(){
     return{
         name:'',
-         data: []
-        // num:0
+         data: [],
+        num:0
     }
 },
  methods: {
- 
+      setCurrent(row) {
+        this.$refs.singleTable.setCurrentRow(row);
+      },
+      handleCurrentChange(val) {
+        this.currentRow = val;
+      },
+       handleSizeChange(val) {
+        console.log(`每页 ${val} 条`);
+      },
+      handleCurrentChange(val) {
+        console.log(`当前页: ${val}`);
+        this.num=(val-1)*20
+        console.log(this.num)
+        axios.get('https://elm.cangdu.org/bos/orders?offset='+this.num+'&limit=20&restaurant_id=undefined').then((res)=>{
+    console.log(res.data)
+    this.data=res.data
+    console.log(this.data)
+})
+      }
     },
 components:{
 Head

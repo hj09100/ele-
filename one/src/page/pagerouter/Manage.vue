@@ -2,8 +2,12 @@
     <div id="rigth">
 <Head :name='name'></Head>
         <el-table
+    style="width: 100%"
+     ref="singleTable"
     :data="data"
-    style="width: 100%">
+    highlight-current-row
+    @current-change="handleCurrentChange"
+    >
     <el-table-column type="expand">
       <template slot-scope="props">
         <el-form label-position="left" inline class="demo-table-expand">
@@ -84,30 +88,30 @@ export default {
 data(){
     return{
         name:'',
-         data: []
-        // num:0
+         data: [],
+        num:0
     }
 },
  methods: {
-    //   setCurrent(row) {
-    //     this.$refs.singleTable.setCurrentRow(row);
-    //   },
-    //   handleCurrentChange(val) {
-    //     this.currentRow = val;
-    //   },
-    //    handleSizeChange(val) {
-    //     console.log(`每页 ${val} 条`);
-    //   },
-    //   handleCurrentChange(val) {
-    //     console.log(`当前页: ${val}`);
-    //     this.num=(val-1)*20
-    //     console.log(this.num)
-    //     axios.get('https://elm.cangdu.org/v1/users/list?offset='+this.num+'&limit=20').then((res)=>{
-    // // console.log(res.data)
-    // this.data=res.data
-    // console.log(this.data)
-// })
-//       }
+      setCurrent(row) {
+        this.$refs.singleTable.setCurrentRow(row);
+      },
+      handleCurrentChange(val) {
+        this.currentRow = val;
+      },
+       handleSizeChange(val) {
+        console.log(`每页 ${val} 条`);
+      },
+      handleCurrentChange(val) {
+        console.log(`当前页: ${val}`);
+        this.num=(val-1)*20
+        console.log(this.num)
+        axios.get('https://elm.cangdu.org/shopping/restaurants?latitude=39.90469&longitude=116.407173&offset='+this.num+'&limit=20').then((res)=>{
+    console.log(res.data)
+    this.data=res.data
+    console.log(this.data)
+})
+      }
     },
 components:{
 Head

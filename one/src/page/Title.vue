@@ -4,7 +4,7 @@
   <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
     <el-menu >
       <!-- <el-submenu index="1"> -->
-          <el-menu-item index="1-1">首页</el-menu-item>
+          <router-link  :to="{ name: 'HomeThis', params: { username: homethis } }"> <el-menu-item index="1-1">首页</el-menu-item></router-link>
         <!-- <template slot="title"><i class="el-icon-message"></i>  首页</template> -->
       <!-- </el-submenu> -->
       <el-submenu index="2">
@@ -19,7 +19,7 @@
       </el-submenu>
       <el-submenu index="3">
         <template slot="title"><i class="el-icon-setting"></i>数据添加</template>
-          <el-menu-item index="3-1">添加商铺</el-menu-item>
+          <router-link :to="{ name: 'Addshop', params: { username: addshop} }" ><el-menu-item index="3-1">添加商铺</el-menu-item></router-link>
           <el-menu-item index="3-2">添加商品</el-menu-item>
 
       </el-submenu>
@@ -58,6 +58,8 @@ data(){
         food:'首页/数据管理/食品列表',
         order:'首页/数据管理/订单列表',
         administrator:'首页/数据管理/管理员列表',
+        homethis:'首页',
+        addshop:'首页/数据添加/添加商铺'
     }
 }
 }

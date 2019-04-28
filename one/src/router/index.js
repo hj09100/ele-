@@ -8,6 +8,9 @@ import User from '@/page/pagerouter/User'
 import Food from '@/page/pagerouter/Food'
 import Order from '@/page/pagerouter/Order'
 import Administrator from '@/page/pagerouter/Administrator'
+import HomeThis from '@/page/pagerouter/HomeThis'
+import Addshop from '@/page/pagerouter/Addshop'
+
 
 
 
@@ -53,6 +56,16 @@ export default new Router({
         path: '/administrator',
         name: 'Administrator',
         component:Administrator
+      },
+      {
+        path: '/honmthis',
+        name: 'HomeThis',
+        component:HomeThis
+      },
+      {
+        path: '/addshop',
+        name: 'Addshop',
+        component:Addshop
       }
       ]
      
