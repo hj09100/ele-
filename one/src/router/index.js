@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
-import Select from '@/page/Select'
-import Title from '@/page/Title'
-import Manage from '@/page/pagerouter/Manage'
-import User from '@/page/pagerouter/User'
-import Food from '@/page/pagerouter/Food'
-import Order from '@/page/pagerouter/Order'
-import Administrator from '@/page/pagerouter/Administrator'
-import HomeThis from '@/page/pagerouter/HomeThis'
-import Addshop from '@/page/pagerouter/Addshop'
+const Select = resolve =>require(["@/page/Select"],resolve);
+const Title = resolve =>require(["@/page/Title"],resolve);
+const Manage = resolve =>require(["@/page/pagerouter/Manage"],resolve);
+const User = resolve =>require(["@/page/pagerouter/User"],resolve);
+const Food = resolve =>require(["@/page/pagerouter/Food"],resolve);
+const Order = resolve =>require(["@/page/pagerouter/Order"],resolve);
+const Administrator = resolve =>require(["@/page/pagerouter/Administrator"],resolve);
+const HomeThis = resolve =>require(["@/page/pagerouter/HomeThis"],resolve);
+const Addshop = resolve =>require(["@/page/pagerouter/Addshop"],resolve);
 
 
 
@@ -58,7 +58,7 @@ export default new Router({
         component:Administrator
       },
       {
-        path: '/honmthis',
+        path: '/',
         name: 'HomeThis',
         component:HomeThis
       },

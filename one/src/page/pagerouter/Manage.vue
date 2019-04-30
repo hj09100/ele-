@@ -111,7 +111,10 @@ data(){
     this.data=res.data
     console.log(this.data)
 })
-      }
+      },
+      handleEdit(){
+this.$router.push('./addshop')
+}
     },
 components:{
 Head

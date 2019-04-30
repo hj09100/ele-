@@ -1,7 +1,7 @@
 <template>
     <div id="head">
          <el-header style="text-align: left;  font-size: 12px">
-		 <span>{{name}}</span>
+		 <span>  <router-link  to='./title'>首页</router-link>{{name}}</span>
 		</el-header>
     </div>
 </template>

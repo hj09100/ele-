@@ -53,13 +53,13 @@
 export default {
 data(){
     return{
-        name:'首页/数据管理/用户列表',
-        shop:'首页/数据管理/商家列表',
-        food:'首页/数据管理/食品列表',
-        order:'首页/数据管理/订单列表',
-        administrator:'首页/数据管理/管理员列表',
-        homethis:'首页',
-        addshop:'首页/数据添加/添加商铺'
+        name:'/数据管理/用户列表',
+        shop:'/数据管理/商家列表',
+        food:'/数据管理/食品列表',
+        order:'/数据管理/订单列表',
+        administrator:'/数据管理/管理员列表',
+        homethis:'',
+        addshop:'/数据添加/添加商铺'
     }
 }
 }

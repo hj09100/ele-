@@ -58,9 +58,6 @@
         <el-button
           size="mini"
           @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-          <el-button
-          size="mini"
-          @click="handleEdit(scope.$index, scope.row)">添加商品</el-button>
         <el-button
           size="mini"
           type="danger"
@@ -111,7 +108,7 @@ data(){
     this.data=res.data
     console.log(this.data)
 })
-      }
+      },
     },
 components:{
 Head

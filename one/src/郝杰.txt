@@ -1,0 +1,163 @@
+1 路由懒加载
+
+懒加载:也叫延迟加载，即在需要的时候进行加载，随用随载。
+
+为什么需要懒加载？
+　　　　像vue这种单页面应用，如果没有应用懒加载，运用webpack打包后的文件将会异常的大，造成进入首页时，需要加载的内容过多，时间过长，会出啊先长时间的白屏，即使做了loading也是不利于用户体验，而运用懒加载则可以将页面进行划分，需要的时候加载页面，可以有效的分担首页所承担的加载压力，减少首页加载用时
+
+　　　　简单的说就是：进入首页不用一次加载过多资源造成用时过长！！！
+
+如何实现？
+
+　　　　懒加载写法：
+                    const Addshop = resolve =>require(["@/page/pagerouter/Addshop"],resolve);
+                    
+                    const Foo = resolve =>{
+                    require.ensure(['./Foo.vue',() => {
+                    　　resolve(require('./Foo.vue'))
+                    }])
+                    }　
+
+
+2 vue动画   设置默认动画的时候 预先给添加动画的元素 设置隐藏，然后页面加载完毕，再显示。这样动画才会生效
+
+3 vue子路由配置默认路由
+
+ {
+      path: '/title',
+      name: 'Title',
+      component:Title,
+      children:[
+         {
+        path: '/manage',
+        name: 'Manage',
+        component:Manage
+      }]
+
+4 vue里面ref的使用
+
+                    被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 $refs 对象上。如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；如果用在子组件上，引用就指向组件实例：
+                    <p ref="p">hello</p>
+                    <child-component ref="child"></child-component>
+
+
+5 连续点击 获取数据时连续点击，但不连续调用接口
+
+6 <keep-alive> 能缓存该组件
+
+                            当在这些组件之间切换的时候，你有时会想保持这些组件的状态，以避免反复重渲染导致的性能问题。例如我们来展开说一说这个多标签界面：
+                            你会注意到，如果你选择了一篇文章，切换到 b 标签，然后再切换回 a，是不会继续展示你之前选择的文章的。这是因为你每次切换新标签的时候，Vue 都创建了一个新的 currentTabComponent 实例。
+                            重新创建动态组件的行为通常是非常有用的，但是在这个案例中，我们更希望那些标签的组件实例能够被在它们第一次被创建的时候缓存下来。为了解决这个问题，我们可以用一个 <keep-alive> 元素将其动态组件包裹起来。
+
+7 time-formater的使用
+
+cnpm install time-foemater
+const time = require('time-formater')
+ 
+let rawDate = time(new Date()).format('YYYY-MM-DD') // 当前时间
+console.log(rawDate) // 2017-05-21 15:19:34
+
+let now = time()// 当前时间
+let date = time(1495355143424) 数字
+
+字符串
+let date = time('2017-05-21')
+// or
+let date = time('2017-05-21 16:37:02')
+// or
+let date = time('2017-05-21 13:20:35+0800')
+// or
+let date = time('2017-05-21 19:02:59-08:00')
+// or
+let date = time('2017-05-21 12:38:49Z')
+
+
+let date = time(new Date())原生日期对象‘
+
+
+
+8 时间的计算 （今天 查询之前7天的 时间）
+function getBeforeDate(n){
+    var n = n;
+    var d = new Date();
+    var year = d.getFullYear();
+    var mon=d.getMonth()+1;
+    var day=d.getDate();
+    if(day <= n){
+            if(mon>1) {
+               mon=mon-1;
+            }
+           else {
+             year = year-1;
+             mon = 12;
+             }
+           }
+          d.setDate(d.getDate()-n);
+          year = d.getFullYear();
+          mon=d.getMonth()+1;
+          day=d.getDate();
+     s = year+"-"+(mon<10?('0'+mon):mon)+"-"+(day<10?('0'+day):day);
+     return s;
+  }
+  console.log(getBeforeDate(1));//昨天的日期
+  console.log(getBeforeDate(7));//前七天的日期
+
+
+
+9 代码的封装axios的封装
+
+
+
+10 vuex mapAction mapMutations 的用法
+
+import { mapMutations} from 'vuex'
+export default {
+   methods:{
+      ...mapMutations([
+      'add_cart', // 将 `this.add_cart()` 映射为 `this.$store.commit('add_cart')`
+    ]),
+     ...mapActions([
+      'add_cart', // 将 `this.add_cart()` 映射为 `this.$store.dispatch('add_cart')`
+    ]),
+   }
+   }
+
+
+
+
+11vuex 长久储存
+1、使用vuex-persist
+cnpm install vuex-persist
+步骤 
+（1） 在 vuex中导入
+import VuePersist from 'vuex-persist'
+（2）、创建VuePersist 声明 存储方式
+const vuexLocal=new VuePersist({
+    storage:window.localStorage
+})3）在插件中声明 plugins:[vuexLocal.plugin]
+
+
+12 路由导航守卫用法，怎么做登录验证
+
+当一个导航触发时，全局前置守卫按照创建顺序调用。守卫是异步解析执行，此时导航在所有守卫 resolve 完之前一直处于 等待中。
+
+每个守卫方法接收三个参数：
++++++
+to: Route: 即将要进入的目标 路由对象
+
+from: Route: 当前导航正要离开的路由
+
+next: Function: 一定要调用该方法来 resolve 这个钩子。执行效果依赖 next 方法的调用参数。
+
+next(): 进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就是 confirmed （确认的）。
+
+next(false): 中断当前的导航。如果浏览器的 URL 改变了（可能是用户手动或者浏览器后退按钮），那么 URL 地址会重置到 from 路由对应的地址。
+
+next('/') 或者 next({ path: '/' }): 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。
+
+next(error): (2.4.0+) 如果传入 next 的参数是一个 Error 实例，则导航会被终止且该错误会被传递给 router.onError() 注册过的回调。
+
+确保要调用 next 方法，否则钩子就不会被 resolved。
+
+13 vue开发中遇到的问题  在路由守卫中获取vue对象
+this指向问题 由于路由守卫是一个回调函数，this是不指向实例的 必须传个参数 这个参数指的就是vuex
